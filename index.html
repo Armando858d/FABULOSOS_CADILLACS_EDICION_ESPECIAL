@@ -370,28 +370,21 @@
             opacity: 1;
         }
 
-        /* -- TARJETA DE MASCOTA ODA (Fondo Blanco) -- */
-        .mascot-card {
-            background-color: #ffffff;
-            border-radius: 16px;
-            padding: 1.5rem;
-            margin: 3rem auto 1rem auto;
-            max-width: 350px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .mascot-card:hover {
-            transform: scale(1.05) rotate(-2deg);
-        }
-
-        .oda-mascot {
-            width: 100%;
+        /* -- TARJETA DE MASCOTA ODA (En el Loader) -- */
+        .loader-mascot {
+            width: 120px;
             height: auto;
-            display: block;
+            margin-bottom: 30px;
+            background: #fff;
+            border-radius: 50%;
+            padding: 12px;
+            box-shadow: 0 0 30px rgba(211, 47, 47, 0.3), 0 10px 25px rgba(0, 0, 0, 0.4);
+            animation: float-mascot 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes float-mascot {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-10px); }
         }
 
         /* -- Etiqueta Cancion Recomendada (Debajo del Video) -- */
@@ -766,9 +759,10 @@
 
 <body>
 
-    <!-- Pantalla de Carga (Logo Animado LFC) -->
+    <!-- Pantalla de Carga (Logo Animado LFC + Mascota) -->
     <div id="loader" class="lfc-loader">
         <div class="lfc-logo-container">
+            <img src="superior.png" alt="Mascota ODA" class="loader-mascot">
             <div class="lfc-text">LFC</div>
             <div class="lfc-sub">Edición Especial 3D</div>
         </div>
@@ -830,11 +824,6 @@
                         Preparando la dedicatoria especial...
                     </p>
                 </div>
-            </div>
-
-            <!-- Tarjeta con Fondo Blanco para la Mascota Dibujada -->
-            <div class="mascot-card">
-                <img src="superior.png" alt="Mascota ODA Studio" class="oda-mascot">
             </div>
 
             <!-- Botones ODA -->
