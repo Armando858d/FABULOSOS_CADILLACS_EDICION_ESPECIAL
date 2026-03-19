@@ -370,6 +370,32 @@
             opacity: 1;
         }
 
+        /* -- Etiqueta Cancion Recomendada (Debajo del Video) -- */
+        .recommended-song-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: -1.5rem;
+            margin-bottom: 2.5rem;
+            padding: 10px 24px;
+            background: rgba(20, 20, 20, 0.95);
+            border: 1px solid var(--accent-main);
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(211, 47, 47, 0.2);
+            z-index: 10;
+        }
+
+        .recommended-song-badge span {
+            color: #fff;
+            margin-left: 8px;
+            font-weight: 700;
+        }
+
         /* -- GRUPO DE BOTONES ODA PREMIUM -- */
         .buttons-container {
             display: flex;
@@ -691,6 +717,9 @@
                     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="display: none;"></iframe>
             </div>
 
+            <!-- Etiqueta de Canción Recomendada -->
+            <div id="recommendedSong" class="recommended-song-badge" style="display: none;"></div>
+
             <div class="content-wrap">
                 <!-- Contenedor Foto -->
                 <div class="figure-image-container">
@@ -891,12 +920,16 @@
             if (figuraParam === 'default' || !figurasData[figuraParam]) {
                 datos.video = "https://www.youtube.com/embed/pjPA7CXutDw?list=RDpjPA7CXutDw";
                 datos.isYoutube = true;
+                datos.mostrarRecomendacion = false;
             } else {
                 // Si es un integrante específico y no tiene video, le ponemos el random de YouTube
                 if (!datos.video || datos.video === "") {
                     datos.video = cancionRandom.video;
                     datos.isYoutube = cancionRandom.isYoutube;
-                    datos.dedicatoria += `<br><br><span style="color: var(--accent-main); font-weight: 600; font-size: 0.95rem; letter-spacing: 1px;">🎵 TU CANCIÓN RECOMENDADA: ${cancionRandom.nombre.toUpperCase()}</span>`;
+                    datos.cancionRecomendada = cancionRandom.nombre.toUpperCase();
+                    datos.mostrarRecomendacion = true;
+                } else {
+                    datos.mostrarRecomendacion = false;
                 }
             }
 
@@ -910,11 +943,19 @@
             const videoPlaceholder = document.getElementById('videoPlaceholder');
             const figVideo = document.getElementById('figVideo');
             const youtubeIframe = document.getElementById('youtubeIframe');
+            const recommendedSongBadge = document.getElementById('recommendedSong');
 
             setTimeout(() => {
                 figName.innerHTML = datos.nombre;
                 figRole.innerHTML = datos.rol;
                 figDedication.innerHTML = datos.dedicatoria;
+
+                if (datos.mostrarRecomendacion) {
+                    recommendedSongBadge.innerHTML = `🎵 TU CANCIÓN RECOMENDADA: <span>${datos.cancionRecomendada}</span>`;
+                    recommendedSongBadge.style.display = 'inline-flex';
+                } else {
+                    recommendedSongBadge.style.display = 'none';
+                }
 
                 if (datos.imagen !== "") {
                     // Si hay foto real local
