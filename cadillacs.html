@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edición Especial 3D | Los Fabulosos Cadillacs x ODA</title>
+
+    <!-- Metadatos SEO y Redes Sociales (Clave para compartir en WhatsApp, Facebook, etc.) -->
+    <meta name="description" content="Edición Especial 3D de Los Fabulosos Cadillacs por ODA Studio. Piezas físicas de colección e interactividad web musical.">
+    <meta property="og:title" content="Edición Especial 3D | Los Fabulosos Cadillacs x ODA">
+    <meta property="og:description" content="Descubre las figuras 3D elaboradas a detalle por ODA Studio y escucha su música.">
+    <meta property="og:type" content="website">
+    
+    <!-- Favicon Personalizado de Guitarra (Para la pestaña del navegador) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎸</text></svg>">
+
+    <!-- Fuentes Premium: Playfair Display (Elegante) e Inter (Moderna) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #050505;
+            /* Rojo Cadillacs (Estilo 'El León') */
+            --accent-main: #d32f2f;
+            --accent-glow: rgba(211, 47, 47, 0.4);
+            --text-main: #f8f9fa;
+            --text-muted: #adb5bd;
+            --glass-bg: rgba(20, 20, 20, 0.75);
+            --glass-border: rgba(211, 47, 47, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Fondo Animado Rock/Ska */
+        .ambient-light {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vw;
+            height: 80vw;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%);
+            opacity: 0.35;
+            z-index: -1;
+            filter: blur(80px);
+            animation: pulse-glow 6s infinite alternate;
+        }
+
+        @keyframes pulse-glow {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.2;
+            }
+
+            100% {
+                transform: translate(-50%, -50%) scale(1.1);
+                opacity: 0.4;
+            }
+        }
+
+        /* -- Fondo Animado: Partículas "Chispas" (Toque Premium) -- */
+        .particles-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .spark-particle {
+            position: absolute;
+            background: var(--accent-main);
+            border-radius: 50%;
+            opacity: 0;
+            animation: floatUp linear forwards;
+            filter: blur(2px);
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(110vh) scale(0.5);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.8;
+            }
+
+            90% {
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translateY(-10vh) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        /* Navbar & Logo ODA */
+        header {
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 1px solid var(--glass-border);
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .oda-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            color: #ffffff;
+            text-transform: uppercase;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .oda-logo span {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            margin-top: 5px;
+        }
+
+        /* Contenedor Principal */
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        /* Tarjeta Estilo Disquera / Escenario */
+        .figure-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-top: 3px solid var(--accent-main);
+            border-radius: 16px;
+            padding: 3rem;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            transform: translateY(30px);
+            opacity: 0;
+            animation: slide-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            max-width: 850px;
+            width: 100%;
+        }
+
+        @keyframes slide-up {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .badge-special {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 4px;
+            background: var(--accent-main);
+            color: #ffffff;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(211, 47, 47, 0.4);
+        }
+
+        /* Títulos y Nombres */
+        .band-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .figure-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-main);
+            line-height: 1.1;
+            text-shadow: 0 2px 10px rgba(211, 47, 47, 0.3);
+        }
+
+        .figure-role {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 3px;
+            margin-top: 0;
+            margin-bottom: 0;
+            text-transform: uppercase;
+        }
+
+        .dedication-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .dedication-text::before,
+        .dedication-text::after {
+            content: '"';
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            color: rgba(211, 47, 47, 0.15);
+            position: absolute;
+            line-height: 1;
+        }
+
+        .dedication-text::before {
+            top: -20px;
+            left: -20px;
+        }
+
+        .dedication-text::after {
+            bottom: -40px;
+            right: -20px;
+        }
+
+        /* Estructura Editorial 2 Columnas */
+        .content-wrap {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            gap: 4rem;
+            text-align: left;
+        }
+
+        .text-content {
+            flex: 1;
+        }
+
+        /* Imagen de la Figura */
+        .figure-image-container {
+            width: 280px;
+            height: 280px;
+            margin: 0;
+            flex-shrink: 0;
+            border-radius: 50%;
+            padding: 6px;
+            background: linear-gradient(135deg, var(--accent-main), #5c0000, #111);
+            position: relative;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 20px rgba(211, 47, 47, 0.2);
+            z-index: 2;
+        }
+
+        .figure-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            background-color: #1a1a1a;
+            border: 4px solid var(--bg-color);
+            transition: transform 0.5s ease;
+        }
+
+        .figure-image-container:hover .figure-image {
+            transform: scale(1.03);
+        }
+
+        /* Contenedor de Video 3D y Placeholder Visual */
+        .video-container {
+            width: 100%;
+            max-width: 100%;
+            margin: 1.5rem auto 3.5rem;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            position: relative;
+            background: #000;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(30, 30, 30, 0.6);
+            border: 2px dashed rgba(211, 47, 47, 0.5);
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .video-container::before {
+            content: 'PROCESO 3D ODA';
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            z-index: 10;
+        }
+
+        /* Ocultar la placa de Proceso 3D si es un video de YouTube */
+        .video-container.is-youtube::before {
+            display: none;
+        }
+
+        .custom-video,
+        .video-iframe {
+            width: 100%;
+            display: block;
+            opacity: 0.9;
+            transition: opacity 0.3s;
+        }
+
+        .video-iframe {
+            aspect-ratio: 16 / 9;
+            border: none;
+        }
+
+        .custom-video:hover,
+        .video-iframe:hover {
+            opacity: 1;
+        }
+
+        /* -- GRUPO DE BOTONES ODA PREMIUM -- */
+        .buttons-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 2rem;
+            width: 100%;
+        }
+
+        .btn-oda {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 35px;
+            background: rgba(211, 47, 47, 0.15);
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            border-radius: 50px;
+            border: 1px solid var(--accent-main);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            font-family: 'Inter', sans-serif;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(211, 47, 47, 0.2);
+            z-index: 1;
+        }
+
+        .btn-oda.secondary {
+            background: transparent;
+            border-color: rgba(255, 255, 255, 0.3);
+            color: var(--text-muted);
+            box-shadow: none;
+        }
+
+        .btn-oda::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+            z-index: -1;
+        }
+
+        .btn-oda:hover::after {
+            transform: translateX(100%);
+        }
+
+        .btn-oda:hover {
+            color: #fff;
+            background: var(--accent-main);
+            box-shadow: 0 10px 30px rgba(211, 47, 47, 0.6), 0 0 20px rgba(211, 47, 47, 0.4);
+            transform: translateY(-5px);
+            border-color: transparent;
+        }
+
+        .btn-oda.secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #fff;
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-oda:active {
+            transform: translateY(0);
+            box-shadow: 0 5px 15px rgba(211, 47, 47, 0.4);
+        }
+
+        /* -- REDES SOCIALES -- */
+        .social-section {
+            margin-top: 3.5rem;
+            width: 100%;
+        }
+
+        .social-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1.2rem;
+            font-weight: 300;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(20, 20, 20, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(211, 47, 47, 0.3);
+            color: #ffffff;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .social-icon:hover {
+            background: var(--accent-main);
+            color: #ffffff;
+            transform: translateY(-6px) scale(1.05);
+            border-color: var(--accent-main);
+            box-shadow: 0 8px 20px rgba(211, 47, 47, 0.5);
+        }
+
+        .social-icon svg {
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
+            transition: transform 0.3s ease;
+        }
+
+        .social-icon:hover svg {
+            transform: scale(1.1);
+            /* (Música eliminada a petición) */
+        }
+
+        /* -- RESPONSIVE TOTAL (MÓVILES) -- */
+        @media (max-width: 768px) {
+            header {
+                padding: 1.5rem 1rem;
+            }
+
+            .oda-logo {
+                font-size: 1.6rem;
+                flex-direction: column;
+                gap: 2px;
+            }
+
+            main {
+                padding: 2rem 1rem;
+            }
+
+            .figure-card {
+                padding: 2.5rem 1.5rem;
+                border-radius: 20px;
+            }
+
+            .band-title {
+                font-size: 1.8rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .content-wrap {
+                flex-direction: column;
+                text-align: center;
+                gap: 2.5rem;
+            }
+
+            .text-content {
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .video-placeholder {
+                height: 200px;
+                font-size: 0.9rem;
+            }
+
+            .figure-name {
+                font-size: 2.2rem;
+                margin-top: 1rem;
+            }
+
+            .figure-role {
+                font-size: 1rem;
+                letter-spacing: 2px;
+            }
+
+            .figure-image-container {
+                width: 220px;
+                height: 220px;
+                margin: 0 auto;
+            }
+
+            .dedication-text {
+                font-size: 1rem;
+                padding: 0 10px;
+            }
+
+            .dedication-text::before,
+            .dedication-text::after {
+                font-size: 2.5rem;
+            }
+
+            .buttons-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .btn-oda {
+                padding: 14px 20px;
+                font-size: 0.85rem;
+                width: 100%;
+            }
+        }
+
+        /* -- FOOTER ELEGANTE (ESTILO GALERÍA) -- */
+        footer {
+            padding: 4rem 2rem;
+            margin-top: auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            background: linear-gradient(180deg, transparent, rgba(10, 10, 10, 0.9));
+            text-align: center;
+        }
+
+        .footer-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 5px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            opacity: 0.7;
+        }
+
+        .footer-brands {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #ffffff;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-separator {
+            width: 30px;
+            height: 1px;
+            background-color: var(--accent-main);
+            opacity: 0.5;
+        }
+
+        .footer-artist {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.4rem;
+            color: var(--text-main);
+            font-weight: 400;
+        }
+
+        .footer-artist-name {
+            color: var(--accent-main);
+            font-weight: 700;
+            font-style: normal;
+            display: block;
+            margin-top: 5px;
+            letter-spacing: 1px;
+        }
+
+        .footer-desc {
+            margin-top: 2.5rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: #777;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Contenedor Efecto Estrellas/Chispas -->
+    <div id="particles-container" class="particles-bg"></div>
+    <div class="ambient-light"></div>
+
+    <header>
+        <div class="oda-logo">
+            ODA <span>Studio 3D</span>
+        </div>
+    </header>
+
+    <main>
+        <div class="figure-card">
+            <div class="badge-special">Edición Especial Física</div>
+
+            <!-- Título Principal de la Banda -->
+            <h1 class="band-title">Los Fabulosos<br>Cadillacs</h1>
+
+            <!-- Contenedor del Video -->
+            <div class="video-container" id="videoContainer">
+                <!-- Recuadro para previsualizar (Se quita solo cuando haya video) -->
+                <div id="videoPlaceholder" class="video-placeholder">
+                    <span>🎬 ESPACIO PARA TU VIDEO 3D</span>
+                </div>
+
+                <!-- Video MP4 Local (Optimizaciones Carga y Compatibilidad iOS aplicadas) -->
+                <video id="figVideo" class="custom-video" autoplay loop muted playsinline preload="metadata"
+                    style="display: none;">
+                    Tu navegador no soporta videos HTML5.
+                </video>
+                <!-- Video de YouTube Iframe -->
+                <iframe id="youtubeIframe" class="video-iframe" src="" title="YouTube video player" frameborder="0"
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="display: none;"></iframe>
+            </div>
+
+            <div class="content-wrap">
+                <!-- Contenedor Foto -->
+                <div class="figure-image-container">
+                    <!-- Foto por defecto temporal -->
+                    <img id="figImg"
+                        src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='250' height='250'><rect width='250' height='250' fill='%23111'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='%23555' font-family='sans-serif' font-size='14'>FOTO INTEGRANTE</text></svg>"
+                        alt="Figura 3D" class="figure-image" loading="lazy">
+                </div>
+
+                <!-- Textos a la Derecha -->
+                <div class="text-content">
+                    <h3 id="figRole" class="figure-role">...</h3>
+                    <h2 id="figName" class="figure-name">Cargando...</h2>
+                    <p id="figDedication" class="dedication-text">
+                        Preparando la dedicatoria especial...
+                    </p>
+                </div>
+            </div>
+
+            <!-- Botones ODA -->
+            <div class="buttons-container">
+                <a href="https://armando858d.github.io/ODA/" target="_blank" rel="noopener" class="btn-oda">
+                    Conoce nuestra página
+                </a>
+                <a href="https://armando858d.github.io/ODA/proyectos.html" target="_blank" rel="noopener"
+                    class="btn-oda secondary">
+                    Nuestros Proyectos
+                </a>
+            </div>
+
+            <!-- Redes Sociales -->
+            <div class="social-section">
+                <p class="social-text">Síguenos en nuestras redes</p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/oda858dj?igsh=MXF3OTl0dzBpODR0eA==" target="_blank"
+                        class="social-icon" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                        </svg>
+                    </a>
+                    <a href="https://www.facebook.com/ServiceODA" target="_blank" class="social-icon"
+                        aria-label="Facebook">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M18.77 7.46H14.5v-1.9c0-.9.6-1.1 1-1.1h3V.5h-4.33C10.24.5 9.5 3.44 9.5 5.32v2.15h-3v4h3v12h5v-12h3.85l.42-4z" />
+                        </svg>
+                    </a>
+                    <a href="https://www.tiktok.com/@oda858d" target="_blank" class="social-icon"
+                        aria-label="TikTok">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M12.525.02c1.31-.02 2.61-.01 3.91.04 1.56 1.5 3.19 2.92 5.06 4.04v4.44a10.51 10.51 0 0 1-5.63-1.85v10.3c-.02 3.65-2.9 6.74-6.52 6.95-3.69.21-7.2-2.31-7.92-5.96-.75-3.79 1.77-7.58 5.48-8.58v4.61c-1.63.49-2.73 2.1-2.52 3.84.14 1.25 1.1 2.37 2.36 2.67 1.7.4 3.32-.7 3.6-2.42.06-.34.09-.7.09-1.06V.02h2.1z" />
+                        </svg>
+                    </a>
+                    <a href="https://wa.me/524492795557?text=Hola%20ODA%2C%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20sus%20servicios%20de%20impresi%C3%B3n%203D."
+                        target="_blank" class="social-icon" aria-label="WhatsApp">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M12.031 0C5.385 0 0 5.385 0 12.031c0 2.118.549 4.17 1.593 5.987L0 24l6.155-1.579c1.763.953 3.75 1.455 5.876 1.455 6.646 0 12.031-5.385 12.031-12.031C24 5.385 18.677 0 12.031 0zm3.626 17.152c-.514 1.442-2.535 1.944-3.57 2.05-.989.102-2.388-.137-4.04-1.189-2.071-1.319-3.414-3.447-3.518-3.585-.104-.139-2.08-2.766-2.08-5.281 0-2.514 1.309-3.752 1.776-4.225.467-.472 1.011-.59 1.344-.59.332 0 .664.004.954.017.311.014.729-.12 1.144.88.436 1.05 1.058 2.585 1.152 2.774.093.189.155.409.04.646-.115.236-.176.381-.352.589-.176.208-.372.454-.528.601-.176.168-.363.354-.15.717.213.363.948 1.56 2.035 2.532 1.401 1.252 2.57 1.639 2.934 1.808.363.169.576.147.794-.105.218-.253.945-1.1 1.199-1.478.254-.378.508-.316.84-.189.332.127 2.103.993 2.466 1.173.363.18.602.268.685.419.083.15.083.87-.431 2.312z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p class="footer-title">Certificado de Autenticidad</p>
+
+        <div class="footer-brands">
+            <span class="footer-logo">ODA Studio 3D</span>
+            <div class="footer-separator"></div>
+            <span class="footer-artist">Realizado y Modelado Exclusivamente por <span class="footer-artist-name">Diego
+                    Armando</span></span>
+        </div>
+
+        <p class="footer-desc">Una pieza física excepcional de colección.</p>
+    </footer>
+
+    <script>
+        // 1. BASE DE DATOS DE LAS 10 FIGURAS
+        // Aquí llenas la información de cada integrante. La clave ("vicentico", "flavio", etc.) es lo que va en la URL.
+        const figurasData = {
+            "vicentico": {
+                nombre: "Vicentico",
+                rol: "Voz Principal",
+                dedicatoria: "Maestro, tu voz es la banda sonora de generaciones enteras. Esta figura 3D, creada con la más alta precisión por ODA Studio, es un pequeño homenaje a toda la magia que nos has regalado sobre el escenario.",
+                imagen: "",
+                video: "",
+                isYoutube: false
+            },
+            "lozano": {
+                nombre: "Daniel Lozano",
+                rol: "Trompeta",
+                dedicatoria: "El brillo y la potencia en cada nota dorada. Admiramos profundamente tu trabajo y dedicamos horas a esculpir cada rasgo de esta pieza coleccionable.",
+                imagen: "",
+                video: "",
+                isYoutube: false
+            },
+            "ricciardi": {
+                nombre: "Fernando Ricciardi",
+                rol: "Batería",
+                dedicatoria: "El motor incansable detrás de la banda. El pulso perfecto en cada concierto. Esta figura es un tributo a tantos años marcando el ritmo del ska y rock latinoamericano.",
+                imagen: "",
+                video: "",
+                isYoutube: false
+            },
+            "siperman": {
+                nombre: "Mario Siperman",
+                rol: "Teclados",
+                dedicatoria: "Las atmósferas y melodías que envuelven cada canción nacen de tus manos. Un honor haber inmortalizado tu figura en esta pieza de impresión 3D desde ODA Studio.",
+                imagen: "",
+                video: "",
+                isYoutube: false
+            },
+            "flavio": {
+                nombre: "Sr.Flavio Cianciarulo",
+                rol: "Bajo y Voz",
+                dedicatoria: "El ritmo y el alma en cada línea de bajo. Gracias por darnos 'Matador' y por esa energía inagotable. Hemos modelado esta pieza física cuidando cada detalle de tu instrumento y tu esencia.",
+                imagen: "",
+                video: "",
+                isYoutube: false
+            },
+            "astor": {
+                nombre: "Astor Cianciarulo",
+                rol: "Batería y Percusión",
+                dedicatoria: "La percusión que hace que sea imposible no moverse. Una nueva generación de talento puro. Esta figura es para agradecerte por tu entrega total en cada show.",
+                imagen: "",
+                video: "",
+                isYoutube: false
+            },
+            "valeria": {
+                nombre: "Valeria Bertuccelli",
+                rol: "Voz Invitada Especial",
+                dedicatoria: "Un talento escénico y vocal inigualable. Tu participación añade una magia especial y única a cada presentación. Es un honor inmortalizarte en esta pieza de colección.",
+                imagen: "",
+                video: "",
+                isYoutube: false
+            },
+            "rotman": {
+                nombre: "Sergio Rotman",
+                rol: "Saxofón",
+                dedicatoria: "El saxo que hace vibrar a multitudes. Tu estilo es inconfundible y quisimos capturar esa pasión en esta figura de edición especial. Gracias por el arte, Sergio.",
+                imagen: "",
+                video: "",
+                isYoutube: false
+            },
+            "florian": {
+                nombre: "Florian Fernández",
+                rol: "Guitarra",
+                dedicatoria: "La sangre nueva que mantiene vivo el fuego en las cuerdas. Nos inspiras a ver que el legado perdura. Esperamos que disfrutes de este modelo creado especialmente para ti.",
+                imagen: "",
+                video: "",
+                isYoutube: false
+            },
+            "jenny": {
+                nombre: "Jenny Cianciarulo",
+                rol: "Voz y Coros",
+                dedicatoria: "La nueva generación que acompaña y fortalece el legado familiar en la música. Tu presencia artística es inspiración pura y quisimos reflejarlo en este detalle 3D.",
+                imagen: "",
+                video: "",
+                isYoutube: false
+            },
+            "default": {
+                nombre: "Banda Legendaria",
+                rol: "¡Gracias Totales!",
+                dedicatoria: "Gracias por la música infinita. Este es un homenaje en formato físico (Impresión 3D) de parte de todo el equipo de ODA Studio. ¡Larga vida al León!",
+                imagen: "",
+                video: "",
+                isYoutube: false
+            }
+        };
+
+        // 2. LÓGICA PARA LEER LA URL Y CAMBIAR LA PÁGINA
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const figuraParam = urlParams.get('figura') ? urlParams.get('figura').toLowerCase() : 'default';
+
+            // Hacemos una copia superficial para poder modificar "datos" sin alterar el original
+            let datos = { ...(figurasData[figuraParam] || figurasData['default']) };
+
+            const canciones = [
+                { nombre: "Matador", video: "https://www.youtube.com/embed/pjXZJzP8Moo", isYoutube: true },
+                { nombre: "Vasos Vacíos", video: "https://www.youtube.com/embed/gU9lXU7Uoig", isYoutube: true },
+                { nombre: "Siguiendo la Luna", video: "https://www.youtube.com/embed/mG3uOepU7iQ", isYoutube: true },
+                { nombre: "Mal Bicho", video: "https://www.youtube.com/embed/_GzQklyM3aY", isYoutube: true },
+                { nombre: "Calaveras y Diablitos", video: "https://www.youtube.com/embed/DgbkF1YlS2Q", isYoutube: true },
+                { nombre: "El León", video: "https://www.youtube.com/embed/mweZ9W2R70A", isYoutube: true },
+                { nombre: "Manuel Santillán", video: "https://www.youtube.com/embed/XqE-0Q2A-_E", isYoutube: true },
+                { nombre: "Carmela", video: "https://www.youtube.com/embed/8kS9K_iR2R4", isYoutube: true },
+                { nombre: "Demasiada Presión", video: "https://www.youtube.com/embed/MhLg1g4jM-U", isYoutube: true },
+                { nombre: "Yo No Me Sentaría En Tu Mesa", video: "https://www.youtube.com/embed/mQZ4C71yP7k", isYoutube: true }
+            ];
+            const cancionRandom = canciones[Math.floor(Math.random() * canciones.length)];
+
+            // Si es la página por defecto, ponemos la canción aleatoria en el nombre
+            if (figuraParam === 'default' || !figurasData[figuraParam]) {
+                datos.rol = "Tu canción es:";
+                datos.nombre = cancionRandom.nombre;
+                datos.video = cancionRandom.video;
+                datos.isYoutube = cancionRandom.isYoutube;
+            } else {
+                // Si es un integrante específico y no tiene video, le ponemos el random de YouTube
+                if (!datos.video || datos.video === "") {
+                    datos.video = cancionRandom.video;
+                    datos.isYoutube = cancionRandom.isYoutube;
+                    datos.dedicatoria += `<br><br><span style="color: var(--accent-main); font-weight: 600; font-size: 0.95rem; letter-spacing: 1px;">🎵 TU CANCIÓN RECOMENDADA: ${cancionRandom.nombre.toUpperCase()}</span>`;
+                }
+            }
+
+            const figName = document.getElementById('figName');
+            const figRole = document.getElementById('figRole');
+            const figDedication = document.getElementById('figDedication');
+            const figImg = document.getElementById('figImg');
+
+            // Video Elements
+            const videoContainer = document.getElementById('videoContainer');
+            const videoPlaceholder = document.getElementById('videoPlaceholder');
+            const figVideo = document.getElementById('figVideo');
+            const youtubeIframe = document.getElementById('youtubeIframe');
+
+            setTimeout(() => {
+                figName.innerHTML = datos.nombre;
+                figRole.innerHTML = datos.rol;
+                figDedication.innerHTML = datos.dedicatoria;
+
+                if (datos.imagen !== "") {
+                    // Si hay foto real local
+                    figImg.src = datos.imagen;
+                } else {
+                    // Foto Avatar "PlaceHolder" gris elegante
+                    figImg.src = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='250' height='250'><rect width='250' height='250' fill='%23111'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='%23555' font-family='sans-serif' font-size='14'>FOTO INTEGRANTE</text></svg>";
+                }
+
+                // Lógica Inteligente de Video (MP4, YouTube o Caja de Prueba)
+                if (datos.video && datos.video !== "") {
+                    // SÍ HAY VIDEO CARGADO
+                    videoContainer.style.display = 'block';
+                    videoPlaceholder.style.display = 'none';
+
+                    if (datos.isYoutube) {
+                        // Ocultar MP4, Mostrar Contenedor YouTube
+                        videoContainer.classList.add('is-youtube');
+                        figVideo.style.display = 'none';
+                        youtubeIframe.style.display = 'block';
+
+                        youtubeIframe.src = datos.video;
+                    } else {
+                        // Mostrar MP4, Ocultar Contenedor YouTube
+                        videoContainer.classList.remove('is-youtube');
+                        youtubeIframe.style.display = 'none';
+                        youtubeIframe.src = ""; // Limpiar el iframe previo
+
+                        figVideo.style.display = 'block';
+                        figVideo.src = datos.video;
+                        figVideo.load();
+                    }
+                } else {
+                    // NO HAY VIDEO CARGADO - MOSTRAR CAJA RECORTADA
+                    videoContainer.style.display = 'block';
+                    videoPlaceholder.style.display = 'flex';
+                    figVideo.style.display = 'none';
+                    youtubeIframe.style.display = 'none';
+
+                    figVideo.src = "";
+                    youtubeIframe.src = "";
+                }
+            }, 50); // Carga "Flash" casi instantánea (bajó de 300ms a 50ms)
+        });
+
+        // 4. GENERADOR DE CHISPAS MÁGICAS EN EL FONDO (Toque "WOW" de Lujo)
+        function createParticles() {
+            const container = document.getElementById('particles-container');
+            const particleCount = 20; // 20 chispas flotando simultáneamente
+
+            for (let i = 0; i < particleCount; i++) {
+                setTimeout(() => {
+                    createSparkle(container);
+                    setInterval(() => createSparkle(container), 8000 + Math.random() * 5000); // Re-crear cada cierto tiempo
+                }, Math.random() * 5000);
+            }
+        }
+
+        function createSparkle(container) {
+            const particle = document.createElement('div');
+            particle.classList.add('spark-particle');
+
+            // Posición y tamaño aleatorio
+            const size = Math.random() * 4 + 2; // de 2px a 6px
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.left = `${Math.random() * 100}vw`; // En todo el ancho
+
+            // Duración aleatoria para que floten lento y distinto
+            particle.style.animationDuration = `${Math.random() * 15 + 10}s`;
+
+            container.appendChild(particle);
+
+            // Borrar cuando termine de subir (para no atascar memoria HTML)
+            setTimeout(() => {
+                particle.remove();
+            }, 26000);
+        }
+
+        // Iniciar las chispas al cargar
+        createParticles();
+    </script>
+</body>
+
+</html>
