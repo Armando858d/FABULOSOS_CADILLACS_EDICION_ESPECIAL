@@ -370,21 +370,21 @@
             opacity: 1;
         }
 
-        /* -- TARJETA DE MASCOTA ODA (En el Loader) -- */
-        .loader-mascot {
-            width: 280px;
+        /* -- MASCOTA ODA (Footer Sello) -- */
+        .footer-mascot {
+            width: 80px;
             height: auto;
-            margin-bottom: 30px;
             background: #fff;
-            border-radius: 20px;
-            padding: 18px;
-            box-shadow: 0 0 40px rgba(211, 47, 47, 0.3), 0 15px 35px rgba(0, 0, 0, 0.5);
-            animation: float-mascot 2s ease-in-out infinite alternate;
+            border-radius: 12px;
+            padding: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            opacity: 0.85;
+            transition: all 0.4s ease;
         }
 
-        @keyframes float-mascot {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-10px); }
+        .footer-mascot:hover {
+            opacity: 1;
+            transform: scale(1.1);
         }
 
         /* -- Etiqueta Cancion Recomendada (Debajo del Video) -- */
@@ -759,10 +759,9 @@
 
 <body>
 
-    <!-- Pantalla de Carga (Logo Animado LFC + Mascota) -->
+    <!-- Pantalla de Carga (Logo Animado LFC) -->
     <div id="loader" class="lfc-loader">
         <div class="lfc-logo-container">
-            <img src="superior.png" alt="Mascota ODA" class="loader-mascot">
             <div class="lfc-text">LFC</div>
             <div class="lfc-sub">Edición Especial 3D</div>
         </div>
@@ -879,6 +878,7 @@
         <p class="footer-title">Certificado de Autenticidad</p>
 
         <div class="footer-brands">
+            <img src="superior.png" alt="Mascota ODA Studio" class="footer-mascot">
             <span class="footer-logo">ODA Studio 3D</span>
             <div class="footer-separator"></div>
             <span class="footer-artist">Realizado y Modelado Exclusivamente por <span class="footer-artist-name">Diego
