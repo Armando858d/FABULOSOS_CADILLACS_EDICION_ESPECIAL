@@ -676,10 +676,79 @@
             font-weight: 300;
             letter-spacing: 1px;
         }
+
+        /* -- ANIMACIÓN DE ENTRADA (LFC) -- */
+        .lfc-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #050505;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        body.loaded .lfc-loader {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .lfc-logo-container {
+            text-align: center;
+            animation: pulse-logo 1.5s infinite alternate ease-in-out;
+        }
+
+        .lfc-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            font-weight: 700;
+            color: var(--accent-main);
+            letter-spacing: 5px;
+            text-shadow: 0 0 30px rgba(211, 47, 47, 0.6);
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .lfc-text::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 20%;
+            width: 60%;
+            height: 3px;
+            background: #fff;
+            box-shadow: 0 0 10px #fff;
+        }
+
+        .lfc-sub {
+            font-family: 'Inter', sans-serif;
+            color: #fff;
+            letter-spacing: 8px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        @keyframes pulse-logo {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            100% { transform: scale(1.05); opacity: 1; text-shadow: 0 0 50px rgba(211, 47, 47, 1); }
+        }
     </style>
 </head>
 
 <body>
+
+    <!-- Pantalla de Carga (Logo Animado LFC) -->
+    <div id="loader" class="lfc-loader">
+        <div class="lfc-logo-container">
+            <div class="lfc-text">LFC</div>
+            <div class="lfc-sub">Edición Especial 3D</div>
+        </div>
+    </div>
 
     <!-- Contenedor Efecto Estrellas/Chispas -->
     <div id="particles-container" class="particles-bg"></div>
@@ -1037,6 +1106,13 @@
 
         // Iniciar las chispas al cargar
         createParticles();
+
+        // 5. ANIMACIÓN DE ENTRADA (Pantalla de Carga LFC)
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.body.classList.add('loaded');
+            }, 1200); // 1.2 segundos de brillo LFC
+        });
     </script>
 </body>
 
